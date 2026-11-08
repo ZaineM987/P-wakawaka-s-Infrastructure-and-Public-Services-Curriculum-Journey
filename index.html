@@ -39,9 +39,9 @@
         .star-empty { filter: grayscale(100%) opacity(0.3); transform: scale(0.9); transition: all 0.3s; }
         
         /* Scrollbar */
-        #map-nodes::-webkit-scrollbar { width: 10px; }
-        #map-nodes::-webkit-scrollbar-track { background: rgba(255,255,255,0.3); border-radius: 10px; margin-block: 10px; }
-        #map-nodes::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.9); border-radius: 10px; border: 2px solid transparent; background-clip: padding-box; }
+        #map-nodes::-webkit-scrollbar, #level-playarea::-webkit-scrollbar { width: 10px; }
+        #map-nodes::-webkit-scrollbar-track, #level-playarea::-webkit-scrollbar-track { background: rgba(255,255,255,0.3); border-radius: 10px; margin-block: 10px; }
+        #map-nodes::-webkit-scrollbar-thumb, #level-playarea::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.9); border-radius: 10px; border: 2px solid transparent; background-clip: padding-box; }
         
         /* TTS Emerald Glow */
         .tts-active { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.4); border-color: #10B981 !important; transform: scale(1.02); transition: all 0.3s ease-in-out; }
@@ -109,7 +109,8 @@
             <div id="level-progress" class="bg-white/90 rounded-full px-2 sm:px-4 py-1 sm:py-2 flex items-center gap-0.5 sm:gap-1 shadow-md border-2 border-white min-h-[32px] sm:min-h-[44px]"></div>
         </div>
 
-        <div class="relative flex-grow flex flex-col items-center justify-between p-4 sm:p-8 overflow-hidden z-10" id="level-playarea">
+        <!-- FIXED: Changed overflow-hidden to overflow-y-auto so the level play area can scroll -->
+        <div class="relative flex-grow flex flex-col items-center justify-between p-4 sm:p-8 overflow-y-auto z-10" id="level-playarea">
             <div class="flex-grow flex flex-col items-center justify-center w-full mt-16 sm:mt-0 relative">
                 <div id="instruction-box" class="speech-bubble bg-white p-4 sm:p-6 rounded-3xl shadow-lg border-4 border-gray-200 text-center max-w-xl w-full mb-8 sm:mb-12 transition-all duration-300 z-20">
                     <p id="level-instruction" class="text-xl sm:text-3xl font-bold text-gray-800"></p>
@@ -117,7 +118,8 @@
                 <div id="level-character" class="mb-2 z-10"></div>
                 <div id="level-visual" class="bg-white/90 p-4 sm:p-6 rounded-3xl shadow-md border-4 border-white text-3xl sm:text-5xl font-black text-gray-800 text-center tracking-widest min-h-[100px] flex items-center justify-center w-full max-w-lg mb-4 sm:mb-8 transition-transform duration-200"></div>
             </div>
-            <div id="level-options" class="flex flex-wrap justify-center gap-4 w-full pb-8"></div>
+            <!-- FIXED: Added shrink-0 and mt-4 to make sure options don't squish out of view and trigger scroll properly -->
+            <div id="level-options" class="flex flex-wrap justify-center gap-4 w-full pb-8 shrink-0 mt-4 sm:mt-0"></div>
         </div>
         
         <div id="loading-overlay" class="absolute inset-0 bg-white/60 backdrop-blur-md z-[55] hidden flex-col items-center justify-center transition-opacity duration-300 opacity-0 pointer-events-none">
